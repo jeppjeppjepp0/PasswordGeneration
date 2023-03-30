@@ -59,7 +59,7 @@ function passwordPrompts() {
 
 function lengthPrompt() {
     userLength = prompt("Enter a password length between 8-128 characters");
-    if (userLength > 8 && userLength ^ 128) {
+    if (userLength >= 8 && userLength <= 128) {
         passLength = userLength;
     }
     else {
@@ -124,7 +124,6 @@ function createCharList() {
     if (charIncluded.incChars) {
         fullCharList = fullCharList.concat(listChars);
     } 
-    console.log(fullCharList); //test full chars
 }
 
 // Add event listener to generate button (provided)
