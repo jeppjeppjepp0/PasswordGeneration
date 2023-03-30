@@ -35,7 +35,6 @@ function generatePassword() {
     var password = "";
     var randIndex = 0;
     passwordPrompts();
-    createCharList();
 
     //generate password (fill empty string)
     for (var i = 0; i < passLength; i++){
@@ -72,6 +71,7 @@ function charsPrompt() {
     //uppers
     if (confirm("Include uppercase letters?")) {
         charIncluded.incUpper = true;
+        fullCharList = fullCharList.concat(listUpper);
         alert("Uppercase included!");
     } else {
         alert("No uppercase!");
@@ -80,6 +80,7 @@ function charsPrompt() {
     //lowers
     if (confirm("Include lowercase letters?")) {
         charIncluded.incLower = true;
+        fullCharList = fullCharList.concat(listLower);
         alert("Lowercase included!");
     } else {
         alert("No lowercase!");
@@ -88,6 +89,7 @@ function charsPrompt() {
     //nums
     if (confirm("Include numbers?")) {
         charIncluded.incNums = true;
+        fullCharList = fullCharList.concat(listNums);
         alert("Numbers included!");
     } else {
         alert("No numbers!");
@@ -96,6 +98,7 @@ function charsPrompt() {
     //chars
     if (confirm("Include special characters?")) {
         charIncluded.incChars = true;
+        fullCharList = fullCharList.concat(listChars);
         alert("Special characters included!");
     } else {
         alert("No special characters!");
@@ -109,21 +112,6 @@ function charsPrompt() {
             alert("Please select at least one character type to include");
             charsPrompt();
         }
-}
-
-function createCharList() {
-    if (charIncluded.incUpper) {
-        fullCharList = fullCharList.concat(listUpper);
-    } 
-    if (charIncluded.incLower) {
-        fullCharList = fullCharList.concat(listLower);
-    } 
-    if (charIncluded.incNums) {
-        fullCharList = fullCharList.concat(listNums);
-    } 
-    if (charIncluded.incChars) {
-        fullCharList = fullCharList.concat(listChars);
-    } 
 }
 
 // Add event listener to generate button (provided)
