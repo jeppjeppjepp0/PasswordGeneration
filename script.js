@@ -1,14 +1,19 @@
-// Assignment Code
+// Assignment Code (provided)
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
-listUpper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-listLower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-listNums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
-listChars = ['!', '\"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', '\,', '-', '\.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'];
+//character lists
+var listUpper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var listLower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var listNums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+var listChars = ['!', '\"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', '\,', '-', '\.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'];
 
+//characters to include in password
+var fullCharList = [];
+
+//user entry
 var userLength = 0;
 
+//password specifics
 var passLength = 0;
 var charIncluded = {
     incUpper: false,
@@ -17,6 +22,7 @@ var charIncluded = {
     incChars: false
 };
 
+// write generated password to screen (provided)
 function writePassword() {
     var password = generatePassword();
     var passwordText = document.querySelector("#password");
@@ -25,8 +31,22 @@ function writePassword() {
 }
 
 function generatePassword() {
+    //password variable initialized as empty string
+    var password = "";
+    var randIndex = 0;
     passwordPrompts();
+    createCharList();
 
+    //generate password (fill empty string)
+    for (var i = 0; i < passLength; i++){
+        //generates a random index within the full characters' list
+        randIndex = Math.floor(Math.random() * fullCharList.length);
+
+        //adds the generated character to the end of the password string
+        password = password.concat(fullCharList[randIndex]);
+    }
+
+    return password;
 }
 
 function passwordPrompts() {
@@ -50,7 +70,7 @@ function lengthPrompt() {
 
 function charsPrompt() {
     //uppers
-    if (confirm("Include uppercase letters?") === true) {
+    if (confirm("Include uppercase letters?")) {
         charIncluded.incUpper = true;
         alert("Uppercase included!");
     } else {
@@ -58,7 +78,7 @@ function charsPrompt() {
     }
 
     //lowers
-    if (confirm("Include lowercase letters?") === true) {
+    if (confirm("Include lowercase letters?")) {
         charIncluded.incLower = true;
         alert("Lowercase included!");
     } else {
@@ -66,7 +86,7 @@ function charsPrompt() {
     }
 
     //nums
-    if (confirm("Include numbers?") === true) {
+    if (confirm("Include numbers?")) {
         charIncluded.incNums = true;
         alert("Numbers included!");
     } else {
@@ -74,13 +94,14 @@ function charsPrompt() {
     }
 
     //chars
-    if (confirm("Include special characters?") === true) {
+    if (confirm("Include special characters?")) {
         charIncluded.incChars = true;
         alert("Special characters included!");
     } else {
         alert("No special characters!");
     }
 
+    //select at least one type
     if (charIncluded.incUpper === false &&
         charIncluded.incLower === false &&
         charIncluded.incNums  === false &&
@@ -90,7 +111,23 @@ function charsPrompt() {
         }
 }
 
-// Add event listener to generate button
+function createCharList() {
+    if (charIncluded.incUpper) {
+        fullCharList = fullCharList.concat(listUpper);
+    } 
+    if (charIncluded.incLower) {
+        fullCharList = fullCharList.concat(listLower);
+    } 
+    if (charIncluded.incNums) {
+        fullCharList = fullCharList.concat(listNums);
+    } 
+    if (charIncluded.incChars) {
+        fullCharList = fullCharList.concat(listChars);
+    } 
+    console.log(fullCharList); //test full chars
+}
+
+// Add event listener to generate button (provided)
 generateBtn.addEventListener("click", writePassword);
 
 
