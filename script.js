@@ -117,12 +117,6 @@ function charsPrompt() {
 // Add event listener to generate button (provided)
 generateBtn.addEventListener("click", writePassword);
 
-
-/*
-length
-chartypes
-*/
-
 /*
 GIVEN I need a new, secure password
 WHEN I click the button to generate a password

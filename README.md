@@ -1,22 +1,22 @@
-# 03 JavaScript: Password Generator
+# Your Project Title 
 
-## Your Task
+## Technology Used 
 
-This week’s challenge requires you to modify starter code to create an application that enables employees to generate random passwords based on criteria that they’ve selected. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean and polished, responsive user interface that adapts to multiple screen sizes.
+| Technology Used         | Resource URL           | 
+| ------------- |:-------------:| 
+| HTML    | [https://developer.mozilla.org/en-US/docs/Web/HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) | 
+| JavaScript | [https://developer.mozilla.org/en-US/docs/Web/JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)|   
+| Git | [https://git-scm.com/](https://git-scm.com/)     |    
 
-The password can include special characters. If you’re unfamiliar with these, see this [list of password special characters](https://www.owasp.org/index.php/Password_special_characters) from the OWASP Foundation.
+<hr>
 
-## User Story
+## Description 
 
-```
-AS AN employee with access to sensitive data
-I WANT to randomly generate a password that meets certain criteria
-SO THAT I can create a strong password that provides greater security
-```
+[Visit the Deployed Site](https://jeppjeppjepp0.github.io/PasswordGeneration/)
 
-## Acceptance Criteria
+This project focused on javascript and required students to write functions to prompt a user to randomly generate a password with certain requirements. The full list of acceptance criteria is shown below. 
 
-```
+```md
 GIVEN I need a new, secure password
 WHEN I click the button to generate a password
 THEN I am presented with a series of prompts for password criteria
@@ -34,59 +34,79 @@ WHEN the password is generated
 THEN the password is either displayed in an alert or written to the page
 ```
 
-## Mock-Up
+<hr>
 
-The following image shows the web application's appearance and functionality:
+## Table of Contents (Optional)
 
-![The Password Generator application displays a red button to "Generate Password".](./Assets/03-javascript-challenge-demo.png)
+If your README is very long, add a table of contents to make it easy for users to find what they need.
 
-## Grading Requirements
+* [Code Sample](#code-sample)
+* [Usage](#usage)
+* [Learning Points](#learning-points)
+* [Author Info](#author-info)
 
-This challenge is graded based on the following criteria: 
+<hr>
 
-### Technical Acceptance Criteria: 40%
+## Code Sample
 
-* Satisfies all of the preceding acceptance criteria plus the following:
+One of the more important functions that I wrote during this project was the lengthPrompt() function that determines the length of the generated password (seen below). This function uses an if else statement with the condition that the user enters a valid number between 8 and 128 characters. If the user fails to do this, they will be re-prompted untill they enter a valid number.
 
-  * The challenge should not produce any errors in the console when you inspect it using Chrome DevTools.
+```js
+function lengthPrompt() {
+    userLength = prompt("Enter a password length between 8-128 characters");
+    if (userLength >= 8 && userLength <= 128) {
+        passLength = userLength;
+    }
+    else {
+        alert("Please enter a value between 8-128");
+        lengthPrompt();
+    }
+}
+```
 
-### Deployment: 32%
+Another important function from this project was the charsPrompt() function that determined what characters are to be included in the randomly generated password. The user is prompted to confirm what characters they would like to use through confirm prompts. If they select 'ok', the given characters are added to a list using the .concat() method. Based on their answer, they are also alerted of their choice to add or deny a given set of characters.
 
-* Application deployed at live URL.
+```js
+if (confirm("Include uppercase letters?")) {
+        charIncluded.incUpper = true; // later used to ensure at least one character type is included
+        fullCharList = fullCharList.concat(listUpper);
+        alert("Uppercase included!");
+    } else {
+        alert("No uppercase!");
+    }
+```
 
-* Application loads with no errors.
+<hr>
 
-* Application GitHub URL submitted.
+## Usage 
 
-* GitHub repository that contains application code.
+The following image is the randomly generated result of a password 12 characters in length with all characters included.
 
-### Application Quality: 15%
+![12 Characters All Included](images/12charAll.png)
 
-* Application user experience is intuitive and easy to navigate.
+Upon clicking the 'Generate Password' button, users will be prompted to enter a length for the password they would like to generate (between 8-128 characters). If they do not answer within the given range, they will be re-prompted until they succeed. Next, the user will be given a series of confirm messages to include certain types of characters in the random password. If none of the characters are selected by the end of the series, the user is alerted and re-prompted to include at least one type of character. Finally, after all prompts are answered valid, the random password is generated and is printed to the text box on screen.
 
-* Application user interface style is clean and polished.
+<hr>
 
-* Application resembles the mock-up functionality provided in the challenge instructions.
+## Learning Points 
 
-### Repository Quality: 13%
+Below are the following topics/methods that I learned through this project:
 
-* Repository has a unique name.
+ * [prompt()](https://www.w3schools.com/jsref/met_win_prompt.asp)
+ * [alert()](https://www.w3schools.com/jsref/met_win_alert.asp)
+ * [confirm()](https://www.w3schools.com/jsref/met_win_confirm.asp)
+ * [Array.concat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)
+ * [general javascript functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)
+ * [if, else, else if javascript](https://www.w3schools.com/js/js_if_else.asp)
+ * [for loops javascript](https://www.w3schools.com/js/js_loop_for.asp)
+ * [random number generation (Math.random())](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
 
-* Repository follows best practices for file structure and naming conventions.
+<hr>
 
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
+## Author Info
 
-* Repository contains multiple descriptive commit messages.
 
-* Repository contains quality readme file with description, screenshot, and link to deployed application.
+### Jedd Javier
 
-## Review
-
-You are required to submit the following for review:
-
-* The URL of the deployed application.
-
-* The URL of the GitHub repository, with a unique name and a readme describing the project.
-
-- - -
-© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+* [LinkedIn](https://www.linkedin.com/in/jedd-javier-4b323426b/)
+* [Github](github.com/jeppjeppjepp0)
